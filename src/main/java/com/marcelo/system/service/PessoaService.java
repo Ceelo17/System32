@@ -1,5 +1,7 @@
 package com.marcelo.system.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,10 @@ public class PessoaService {
 	public PessoaDomain inserir(PessoaDomain ps) {
 		ps.setCodigo(null);
 		return repo.save(ps);
+	}
+	
+	public List<PessoaDomain> listar(PessoaDomain ps) {
+		return repo.findAll();
 	}
 
 }

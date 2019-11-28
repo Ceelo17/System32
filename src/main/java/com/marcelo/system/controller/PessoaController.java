@@ -1,5 +1,7 @@
 package com.marcelo.system.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,16 +20,25 @@ public class PessoaController {
 	@Autowired
 	private PessoaService service;
 
+	// Método que Abre o formulário para cadastro
+
 	@RequestMapping(value = "")
-	public ModelAndView Pessoa(Model model) {
+	public ModelAndView formulario(Model model) {
 		return new ModelAndView("PessoaCadastro");
 	}
 
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public String Cadastrar(@ModelAttribute("pessoa") PessoaDomain pessoa, Model model) {
+	public String cadastrar(@ModelAttribute("pessoa") PessoaDomain pessoa, Model model) {
 		model.addAttribute(pessoa.getNome());
 		service.inserir(pessoa);
 		return "redirect:/pessoa";
+	}
+
+	@RequestMapping(value = "/listar", method = RequestMethod.GET)
+	public String listar(@ModelAttribute("pessoa") PessoaDomain pessoa, Model model) {
+		List<PessoaDomain> listaPessoas = service.listar(pessoa);
+		model.addAttribute("pessoas", listaPessoas);
+		return "PessoaLista";
 	}
 
 }
