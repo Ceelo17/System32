@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div>
-		<form method="post" action="Pessoa/Cadastrar">
+		<form method="post" action="pessoa/cadastrar">
 			Nome: <input type="text" name="nome" placeholder="Digite o seu nome"
 				required="required" /> <input type="submit" value="Submit">
 		</form>
