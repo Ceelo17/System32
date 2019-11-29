@@ -2,10 +2,14 @@ package com.marcelo.system.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,13 +18,13 @@ import com.marcelo.system.domain.PessoaDomain;
 import com.marcelo.system.service.PessoaService;
 
 @Controller
-@RequestMapping("pessoa")
+@RequestMapping("/pessoa")
 public class PessoaController {
 
 	@Autowired
 	private PessoaService service;
 
-	// Método que Abre o formulário para cadastro
+	// Método que abre o formulário para cadastro
 
 	@RequestMapping(value = "")
 	public ModelAndView formulario(Model model) {
@@ -28,17 +32,35 @@ public class PessoaController {
 	}
 
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public String cadastrar(@ModelAttribute("pessoa") PessoaDomain pessoa, Model model) {
+	public String cadastrar(@ModelAttribute("pessoa") PessoaDomain pessoa, BindingResult result, Model model) {
 		model.addAttribute(pessoa.getNome());
 		service.inserir(pessoa);
 		return "redirect:/pessoa";
 	}
 
-	@RequestMapping(value = "/listar", method = RequestMethod.GET)
-	public String listar(@ModelAttribute("pessoa") PessoaDomain pessoa, Model model) {
-		List<PessoaDomain> listaPessoas = service.listar(pessoa);
+	@RequestMapping(value = "/listar")
+	public String listarForm(@ModelAttribute("pessoa") PessoaDomain pessoa, BindingResult result, Model model) {
+		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("pessoas", listaPessoas);
 		return "PessoaLista";
 	}
 
+	// Método que abre o formulário de edição carregando o id
+	@RequestMapping(value = "/editarForm/{id}")
+	public String editarForm(@PathVariable("id") Integer id, Model model) {
+		PessoaDomain pessoa = service.listarPorId(id);
+		model.addAttribute("pessoa", pessoa);
+		return "PessoaEdicao";
+	}
+
+	@RequestMapping(value = "/editar/{id}", method = RequestMethod.POST)
+	public String editar(@PathVariable("id") Integer id, @Valid PessoaDomain pessoa, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			pessoa.setId(id);
+			return "redirect:/pessoa";
+		}
+		service.editar(pessoa);
+		model.addAttribute("pessoas", service.listar());
+		return "redirect:/pessoa";
+	}
 }

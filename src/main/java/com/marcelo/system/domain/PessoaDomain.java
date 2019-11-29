@@ -13,41 +13,41 @@ public class PessoaDomain implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Codigo;
-	private String Nome;
+	private Integer id;
+	private String nome;
 
 	public PessoaDomain() {
 		super();
 	}
 
-	public PessoaDomain(Long codigo, String nome) {
+	public PessoaDomain(Integer id, String nome) {
 		super();
-		Codigo = codigo;
-		Nome = nome;
+		this.id = id;
+		this.nome = nome;
 	}
 
-	public Long getCodigo() {
-		return Codigo;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCodigo(Long codigo) {
-		Codigo = codigo;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Codigo == null) ? 0 : Codigo.hashCode());
-		result = prime * result + ((Nome == null) ? 0 : Nome.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -60,15 +60,15 @@ public class PessoaDomain implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		PessoaDomain other = (PessoaDomain) obj;
-		if (Codigo == null) {
-			if (other.Codigo != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!Codigo.equals(other.Codigo))
+		} else if (!id.equals(other.id))
 			return false;
-		if (Nome == null) {
-			if (other.Nome != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!Nome.equals(other.Nome))
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}
