@@ -27,7 +27,7 @@
 						<td><a href="/pessoa/editarForm/${pessoa.id}">
 								<button type="submit" class="btn btn-primary">Editar</button>
 						</a></td>
-						<td><a href="/pessoa/${pessoa.id}/deletar">
+						<td><a href="/pessoa/deletar/${pessoa.id}">
 								<button type="submit">Deletar</button>
 						</a></td>
 					</tr>

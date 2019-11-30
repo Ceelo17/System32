@@ -29,7 +29,7 @@ public class PessoaService {
 
 	// Utiliza o Optional no método pois pode retornar nulo
 
-	public PessoaDomain listarPorId(Integer id) {
+	public PessoaDomain listarPorId(Long id) {
 		Optional<PessoaDomain> ps = repo.findById(id);
 		return ps.orElse(null);
 	}
@@ -41,7 +41,7 @@ public class PessoaService {
 		return repo.save(ps);
 	}
 
-	public void deletar(Integer id) {
+	public void deletar(Long id) {
 		repo.delete(listarPorId(id));
 	}
 
