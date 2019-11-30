@@ -3,24 +3,37 @@ package com.marcelo.system.domain;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class TarefaDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
+	private String titulo;
 	private Date dataExpericao;
+
+	@Column(nullable = true)
 	private boolean concluida;
 
 	public TarefaDomain() {
 		super();
 	}
 
-	public TarefaDomain(Long id, String descricao, Date dataExpericao, boolean concluida) {
+	public TarefaDomain(Long id, String descricao, Date dataExpericao, boolean concluida, String titulo) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.dataExpericao = dataExpericao;
 		this.concluida = concluida;
+		this.titulo = titulo;
 	}
 
 	public Long getId() {
@@ -55,6 +68,14 @@ public class TarefaDomain implements Serializable {
 		this.concluida = concluida;
 	}
 
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -63,6 +84,7 @@ public class TarefaDomain implements Serializable {
 		result = prime * result + ((dataExpericao == null) ? 0 : dataExpericao.hashCode());
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		return result;
 	}
 
@@ -91,6 +113,11 @@ public class TarefaDomain implements Serializable {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (titulo == null) {
+			if (other.titulo != null)
+				return false;
+		} else if (!titulo.equals(other.titulo))
 			return false;
 		return true;
 	}

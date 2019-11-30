@@ -38,7 +38,7 @@ public class PessoaController {
 
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public String cadastrar(@ModelAttribute("pessoa") PessoaDomain pessoa, Model model) {
-		model.addAttribute(pessoa.getNome());
+		model.addAttribute("nome", pessoa.getNome());
 		service.inserir(pessoa);
 		return "redirect:/pessoa";
 	}
