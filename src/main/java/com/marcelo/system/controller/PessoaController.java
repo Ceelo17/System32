@@ -28,6 +28,11 @@ public class PessoaController {
 
 	@RequestMapping(value = "")
 	public ModelAndView formulario(Model model) {
+
+		// Método para atualizar a página de formulario com a lista de pessoas
+
+		List<PessoaDomain> listaPessoas = service.listar();
+		model.addAttribute("pessoas", listaPessoas);
 		return new ModelAndView("PessoaCadastro");
 	}
 
@@ -54,7 +59,8 @@ public class PessoaController {
 	}
 
 	@RequestMapping(value = "/editar/{id}", method = RequestMethod.POST)
-	public String editar(@PathVariable("id") Integer id, @Valid PessoaDomain pessoa, BindingResult result, Model model) {
+	public String editar(@PathVariable("id") Integer id, @Valid PessoaDomain pessoa, BindingResult result,
+			Model model) {
 		if (result.hasErrors()) {
 			pessoa.setId(id);
 			return "redirect:/pessoa";
@@ -63,4 +69,11 @@ public class PessoaController {
 		model.addAttribute("pessoas", service.listar());
 		return "redirect:/pessoa";
 	}
+
+	@RequestMapping(value = "/{id}/deletar")
+	public String deletar(@PathVariable("id") Integer id) {
+		service.deletar(id);
+		return "redirect:/pessoa";
+	}
+
 }

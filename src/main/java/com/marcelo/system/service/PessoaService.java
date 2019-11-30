@@ -41,4 +41,8 @@ public class PessoaService {
 		return repo.save(ps);
 	}
 
+	public void deletar(Integer id) {
+		repo.delete(listarPorId(id));
+	}
+
 }
