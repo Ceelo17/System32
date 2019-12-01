@@ -27,10 +27,9 @@ public class TarefaController {
 	public String cadastrar(@ModelAttribute("tarefa") TarefaDomain td, Model model) {
 		model.addAttribute("descricao", td.getDescricao());
 		model.addAttribute("titulo", td.getTitulo());
-		/*
-		 * model.addAttribute(td.getDataExpericao());
-		 * model.addAttribute(td.isConcluida());
-		 */
+		model.addAttribute("dataExpiracao", td.getDataExpiracao());
+		model.addAttribute("concluido", td.isConcluida());
+
 		service.inserir(td);
 		return "redirect:/tarefa";
 	}

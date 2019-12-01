@@ -1,13 +1,14 @@
 package com.marcelo.system.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class TarefaDomain implements Serializable {
@@ -18,22 +19,23 @@ public class TarefaDomain implements Serializable {
 	private Long id;
 	private String descricao;
 	private String titulo;
-	private Date dataExpericao;
 
-	@Column(nullable = true)
+	@Temporal(TemporalType.DATE)
+	private Date dataExpiracao;
+
 	private boolean concluida;
 
 	public TarefaDomain() {
 		super();
 	}
 
-	public TarefaDomain(Long id, String descricao, Date dataExpericao, boolean concluida, String titulo) {
+	public TarefaDomain(Long id, String descricao, String titulo, Date dataExpiracao, boolean concluida) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
-		this.dataExpericao = dataExpericao;
-		this.concluida = concluida;
 		this.titulo = titulo;
+		this.dataExpiracao = dataExpiracao;
+		this.concluida = concluida;
 	}
 
 	public Long getId() {
@@ -52,12 +54,20 @@ public class TarefaDomain implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Date getDataExpericao() {
-		return dataExpericao;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setDataExpericao(Date dataExpericao) {
-		this.dataExpericao = dataExpericao;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public Date getDataExpiracao() {
+		return dataExpiracao;
+	}
+
+	public void setDataExpiracao(Date dataExpiracao) {
+		this.dataExpiracao = dataExpiracao;
 	}
 
 	public boolean isConcluida() {
@@ -68,20 +78,12 @@ public class TarefaDomain implements Serializable {
 		this.concluida = concluida;
 	}
 
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (concluida ? 1231 : 1237);
-		result = prime * result + ((dataExpericao == null) ? 0 : dataExpericao.hashCode());
+		result = prime * result + ((dataExpiracao == null) ? 0 : dataExpiracao.hashCode());
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
@@ -99,10 +101,10 @@ public class TarefaDomain implements Serializable {
 		TarefaDomain other = (TarefaDomain) obj;
 		if (concluida != other.concluida)
 			return false;
-		if (dataExpericao == null) {
-			if (other.dataExpericao != null)
+		if (dataExpiracao == null) {
+			if (other.dataExpiracao != null)
 				return false;
-		} else if (!dataExpericao.equals(other.dataExpericao))
+		} else if (!dataExpiracao.equals(other.dataExpiracao))
 			return false;
 		if (descricao == null) {
 			if (other.descricao != null)

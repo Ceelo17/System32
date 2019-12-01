@@ -11,8 +11,10 @@
 		<form method="post" action="tarefa/cadastrar">
 			Título: <input type="text" name="titulo"
 				placeholder="Digite o título da tarefa" required="required" />
-			Descrição: <input type="text" name="descricao" required="required" /> <input
-				type="submit" value="Submit">
+			Descrição: <input type="text" name="descricao" required="required" />
+			Data Limite: <input type="text" name="dataExpiracao" /> Concluído: <input
+				type="checkbox" name="concluido" value="true" checked /> <input type="submit"
+				value="Submit">
 		</form>
 	</div>
 	<h2>Lista de Pessoas</h2>
