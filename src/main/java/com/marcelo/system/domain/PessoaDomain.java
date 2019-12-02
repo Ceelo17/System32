@@ -1,11 +1,13 @@
 package com.marcelo.system.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class PessoaDomain implements Serializable {
@@ -15,6 +17,9 @@ public class PessoaDomain implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+
+	@OneToMany(mappedBy = "pessoa", targetEntity = TarefaDomain.class)
+	private List<TarefaDomain> tarefas;
 
 	public PessoaDomain() {
 		super();
@@ -40,6 +45,14 @@ public class PessoaDomain implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<TarefaDomain> getTarefas() {
+		return tarefas;
+	}
+
+	public void setTarefas(List<TarefaDomain> tarefas) {
+		this.tarefas = tarefas;
 	}
 
 	@Override

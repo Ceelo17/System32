@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,14 +36,14 @@ public class PessoaController {
 	}
 
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public String cadastrar(@ModelAttribute("pessoa") PessoaDomain pessoa, Model model) {
+	public String cadastrar(PessoaDomain pessoa, Model model) {
 		model.addAttribute("nome", pessoa.getNome());
 		service.inserir(pessoa);
 		return "redirect:/pessoa";
 	}
 
 	@RequestMapping(value = "/listar")
-	public String listarForm(@ModelAttribute("pessoa") PessoaDomain pessoa, BindingResult result, Model model) {
+	public String listarForm(PessoaDomain pessoa, BindingResult result, Model model) {
 		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("pessoas", listaPessoas);
 		return "PessoaLista";

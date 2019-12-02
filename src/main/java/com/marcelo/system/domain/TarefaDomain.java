@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,6 +26,11 @@ public class TarefaDomain implements Serializable {
 	private Date dataExpiracao;
 
 	private boolean concluida;
+
+	// Relacionamentos
+	@ManyToOne()
+	@JoinColumn(name = "tarefa_id")
+	PessoaDomain pessoa;
 
 	public TarefaDomain() {
 		super();
@@ -76,6 +83,14 @@ public class TarefaDomain implements Serializable {
 
 	public void setConcluida(boolean concluida) {
 		this.concluida = concluida;
+	}
+
+	public PessoaDomain getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(PessoaDomain pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	@Override
