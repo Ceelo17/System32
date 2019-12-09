@@ -8,15 +8,23 @@
 </head>
 <body>
 	<div>
-		<form method="post" action="tarefa/cadastrar">
-			Título: <input type="text" name="titulo"
-				placeholder="Digite o título da tarefa" required="required" />
-			Descrição:
-			<textarea name="descricao" rows=-15 cols="30"></textarea>
-			Data Limite: <input type="text" name="dataExpiracao" /> Concluído: <input
-				type="checkbox" name="concluido" value="true" checked /> <input
-				type="submit" value="Submit">
-		</form>
+		<c:forEach var="pessoa" items="${pessoas}">
+			<tr>
+				<th>Id:</th>
+				<td><c:out value="${pessoa.id}"></c:out></td>
+				<th>Nome:</th>
+				<td><c:out value="${pessoa.nome}"></c:out></td>
+			</tr>
+			<form method="post" action="/tarefa/cadastrar/${pessoa.id}">
+				Título: <input type="text" name="titulo"
+					placeholder="Digite o título da tarefa" required="required" />
+				Descrição:
+				<textarea name="descricao" rows=-15 cols="30"></textarea>
+				Data Limite: <input type="text" name="dataExpiracao" /> Concluído:
+				<input type="checkbox" name="concluido" value="true" checked /> <input
+					type="submit" value="Submit">
+			</form>
+		</c:forEach>
 	</div>
 	<h2>Lista de Tarefas</h2>
 	<div>

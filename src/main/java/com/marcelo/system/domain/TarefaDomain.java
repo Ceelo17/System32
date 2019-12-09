@@ -28,21 +28,23 @@ public class TarefaDomain implements Serializable {
 	private boolean concluida;
 
 	// Relacionamentos
-	@ManyToOne()
-	@JoinColumn(name = "tarefa_id")
-	PessoaDomain pessoa;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "pessoa_id")
+	private PessoaDomain pessoa;
 
 	public TarefaDomain() {
 		super();
 	}
 
-	public TarefaDomain(Long id, String descricao, String titulo, Date dataExpiracao, boolean concluida) {
+	public TarefaDomain(Long id, String descricao, String titulo, Date dataExpiracao, boolean concluida,
+			PessoaDomain pessoa) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.titulo = titulo;
 		this.dataExpiracao = dataExpiracao;
 		this.concluida = concluida;
+		this.pessoa = pessoa;
 	}
 
 	public Long getId() {

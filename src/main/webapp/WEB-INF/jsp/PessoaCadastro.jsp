@@ -30,6 +30,9 @@
 						<td><a href="/pessoa/deletar/${pessoa.id}">
 								<button type="submit">Deletar</button>
 						</a></td>
+						<td><a href="/tarefa/${pessoa.id}">
+								<button type="submit">Tarefa</button>
+						</a></td>
 					</tr>
 				</c:forEach>
 			</table>
