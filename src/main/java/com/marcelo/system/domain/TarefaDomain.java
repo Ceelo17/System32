@@ -3,6 +3,7 @@ package com.marcelo.system.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,10 +26,11 @@ public class TarefaDomain implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataExpiracao;
 
+	@Column(nullable = true)
 	private boolean concluida;
 
 	// Relacionamentos
-	@ManyToOne(optional = false)
+	@ManyToOne()
 	@JoinColumn(name = "pessoa_id")
 	private PessoaDomain pessoa;
 

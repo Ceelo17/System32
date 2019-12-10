@@ -36,16 +36,13 @@ public class TarefaController {
 	}
 
 	@RequestMapping(value = "/cadastrar/{id}", method = RequestMethod.POST)
-	public String cadastrar(@PathVariable("id") Long id, TarefaDomain td, Model model) {
-		model.addAttribute("descricao", td.getDescricao());
-		model.addAttribute("titulo", td.getTitulo());
-		model.addAttribute("dataExpiracao", td.getDataExpiracao());
-		model.addAttribute("concluido", td.isConcluida());
+	public String cadastrar(@PathVariable("id") Long id, TarefaDomain td, PessoaDomain ps, Model model) {
 
-		PessoaDomain pessoa = service.listarPorId(id);
-		model.addAttribute("pessoa", td.getPessoa() == pessoa);
-		serviceT.inserir(td);
-		return "redirect:/pessoa";
+		TarefaDomain td1 = new TarefaDomain(null, td.getDescricao(), td.getTitulo(), td.getDataExpiracao(),
+				td.isConcluida(), td.getPessoa());
+
+		serviceT.inserir(td1);
+		return "redirect:/tarefa/{id}";
 	}
 
 	@RequestMapping(value = "/listar")

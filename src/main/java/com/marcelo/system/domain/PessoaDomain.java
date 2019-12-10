@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +21,7 @@ public class PessoaDomain implements Serializable {
 	private Long id;
 	private String nome;
 
-	@OneToMany(mappedBy = "pessoa")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa", fetch = FetchType.EAGER)
 	private List<TarefaDomain> tarefas = new ArrayList<>();
 
 	public PessoaDomain() {
