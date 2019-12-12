@@ -38,6 +38,8 @@ public class PessoaController {
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public String cadastrar(PessoaDomain pessoa, Model model) {
 		model.addAttribute("nome", pessoa.getNome());
+		model.addAttribute("email", pessoa.getEmail());
+		model.addAttribute("dtNasicmento", pessoa.getDtNascimento());
 		service.inserir(pessoa);
 		return "redirect:/pessoa";
 	}
