@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	errorPage=""%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
@@ -7,20 +7,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="webjars/bootstrap/4.4.1/css/bootstrap.min.css"
 	rel="stylesheet" />
-<link href="css/header.css" rel="stylesheet" type="text/css" />
+<link href="static/css/header.css" rel="stylesheet" type="text/css" />
 <title>Cadastro</title>
 </head>
 <body>
 
 	<div class="wrapper">
 
-		<jsp:include page="sidebar.jsp" />
+		<%@include file="layout/sidebar.jsp"%>
 
 		<div id="content">
 
-			<jsp:include page="header.jsp" />
+			<jsp:include page="layout/header.jsp" />
 
-			<!-- Formulário -->
+			<!-- FormulÃ¡rio -->
 			<form method="post" action="pessoa/cadastrar">
 				<div class="form-row">
 					<div class="form-group col-md-6">
@@ -28,11 +28,11 @@
 							placeholder="Seu nome" required="required" class="form-control" />
 					</div>
 					<div class="form-group col-md-6">
-						<label>Endereço de email</label> <input type="email"
+						<label>EndereÃ§o de email</label> <input type="email"
 							class="form-control" name="email" aria-describedby="emailHelp"
 							placeholder="Seu email" required="required"> <small
 							id="emailHelp" class="form-text text-muted">Nunca vamos
-							compartilhar seu email, com ninguém.</small>
+							compartilhar seu email, com ninguÃ©m.</small>
 					</div>
 					<div class="form-group col-md-2">
 						<label> Data de Nascimento </label> <input type="text"
