@@ -32,7 +32,7 @@ public class PessoaController {
 
 		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("pessoas", listaPessoas);
-		return new ModelAndView("PessoaCadastro");
+		return new ModelAndView("pessoa/pessoasCadastro");
 	}
 
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
@@ -48,7 +48,7 @@ public class PessoaController {
 	public String listarForm(PessoaDomain pessoa, BindingResult result, Model model) {
 		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("pessoas", listaPessoas);
-		return "PessoaLista";
+		return "pessoa/PessoaLista";
 	}
 
 	// Método que abre o formulário de edição carregando o id
@@ -56,7 +56,7 @@ public class PessoaController {
 	public String editarForm(@PathVariable("id") Long id, Model model) {
 		PessoaDomain pessoa = service.listarPorId(id);
 		model.addAttribute("pessoa", pessoa);
-		return "PessoaEdicao";
+		return "pessoa/PessoaEdicao";
 	}
 
 	@RequestMapping(value = "/editar/{id}", method = RequestMethod.POST)
