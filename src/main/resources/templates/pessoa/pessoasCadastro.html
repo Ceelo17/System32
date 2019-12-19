@@ -1,78 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="webjars/bootstrap/4.4.1/css/bootstrap.min.css"
 	rel="stylesheet" />
 <link href="static/css/header.css" rel="stylesheet" type="text/css" />
+
 <title>Cadastro</title>
 </head>
 <body>
 	<div class="wrapper">
 
-
 		<div id="content">
 
+			<form th:form th:action="@{pessoa/cadastrar}" method="post">
 
-			<!-- Formulário -->
-			<form action="#" th:action="@{pessoa/cadastrar}"
-				th:object="${PessoaDomain}" method="post">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome"> Nome </label> <input type="text"
-							th:field="*{nome}" placeholder="Seu nome" required="required"
-							class="form-control" />
+
+						<label th:label> Nome </label> <input type="text" name="nome"
+							placeholder="Seu nome" required="required" class="form-control" />
 					</div>
+
 					<div class="form-group col-md-6">
-						<label>Endereço de email</label> <input type="email"
-							class="form-control" th:field="*email"
-							aria-describedby="emailHelp" placeholder="Seu email"
-							required="required"> <small id="emailHelp"
-							class="form-text text-muted">Nunca vamos compartilhar seu
-							email, com ninguém.</small>
+						<label th:label>Endereço de email</label> <input type="email"
+							class="form-control" name="email" aria-describedby="emailHelp"
+							placeholder="Seu email" required="required"> <small
+							th:span id="emailHelp" class="form-text text-muted">Nunca
+							vamos compartilhar seu email, com ninguém.</small>
 					</div>
+
 					<div class="form-group col-md-2">
-						<label> Data de Nascimento </label> <input type="text"
-							th:field="*dtNascimento" required="required" class="form-control" />
+						<label th:label> Data de Nascimento </label> <input type="text"
+							name="dtNascimento" required="required" class="form-control" />
 					</div>
 				</div>
+
 				<button type="submit" class="btn btn-primary">Enviar</button>
 			</form>
 
-			<div th:switch="pessoas">
-				<h2 th:case="null">No users yet!</h2>
-				<div th:case="*">
-					<h2>Lista de Pessoas</h2>
-					<table class="table table-dark">
-						<thead>
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Nome</th>
-								<th scope="col">Email</th>
-								<th scope="col">Data de Nascimento</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="pessoa": ${pessoas}">
-								<th scope="row"></th>
-								<td th:text="${pessoa.nome}"></td>
-								<td th:text="${pessoa.email}"></td>
-								<td th:text="${pessoa.dtNascimento}"></td>
+			<h2>Lista de Pessoas</h2>
+			<div>
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Email</th>
+							<th scope="col">Data de Nascimento</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ps : ${pessoas}">
+							<th th:text="${ps.id}" scope="row"></th>
+							<td th:text="${ps.nome}"></td>
+							<td th:text="${ps.email}"></td>
+							<td th:text="${ps.dtNascimento}"></td>
 
-								<td><a href="/pessoa/editarForm/${pessoa.id}">
-										<button type="submit" class="btn btn-primary">Editar</button>
-								</a></td>
-								<td><a href="/pessoa/deletar/${pessoa.id}">
-										<button type="submit" class="btn btn-primary">Deletar</button>
-								</a></td>
-								<td><a href="/tarefa/${pessoa.id}">
-										<button type="submit" class="btn btn-primary">Tarefa</button>
-								</a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+							<td><a th:href="@{/pessoa/editarForm/${ps.id}}">
+									<button type="submit" class="btn btn-primary">Editar</button>
+							</a></td>
+							<td><a th:href="@{/pessoa/deletar/{id}(id=${ps.id})}">
+									<button type="submit" class="btn btn-primary">Deletar</button>
+							</a></td>
+							<td><a th:href="@{/tarefa/${ps.id}}">
+									<button type="submit" class="btn btn-primary">Tarefa</button>
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
