@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="webjars/bootstrap/4.4.1/css/bootstrap.min.css"
 	rel="stylesheet" />
-<link href="static/css/header.css" rel="stylesheet" type="text/css" />
+<link href="css/header.css" rel="stylesheet" type="text/css" />
 <title>Cadastro</title>
 </head>
 <body>
