@@ -5,17 +5,21 @@
 </head>
 
 <body>
+
 	<div class="wrapper">
-	
-	<div th:replace="layout/sidebar :: sidebar"></div>
+
+		<!-- Fragmento do sidebar fixo -->
+		<div th:replace="layout/sidebar :: sidebar"></div>
 
 		<div id="content">
-		
-		<div th:replace="layout/header :: header"></div>
+
+			<!-- Fragmento do header fixo -->
+			<div th:replace="layout/header :: header"></div>
 
 			<form th:form th:action="@{pessoa/cadastrar}" method="post">
 
 				<div class="form-row">
+
 					<div class="form-group col-md-6">
 
 						<label th:label> Nome </label> <input type="text" name="nome"
@@ -23,11 +27,19 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label th:label>Endereço de email</label> <input type="email"
-							class="form-control" name="email" aria-describedby="emailHelp"
-							placeholder="Seu email" required="required"> <small
-							th:span id="emailHelp" class="form-text text-muted">Nunca
-							vamos compartilhar seu email, com ninguém.</small>
+						<label th:label>Endereco de email</label>
+
+						<div class="input-group mb-3">
+							<input type="email" class="form-control" placeholder="Seu email"
+								required="required" aria-label="Recipiente para nickname"
+								aria-describedby="basic-addon2">
+							<div class="input-group-append">
+								<span class="input-group-text" id="basic-addon2">@exemplo.com</span>
+							</div>
+
+						</div>
+						<small th:span id="emailHelp" class="form-text text-muted">Nunca
+							vamos compartilhar seu email, com ninguem.</small>
 					</div>
 
 					<div class="form-group col-md-2">
@@ -37,41 +49,17 @@
 				</div>
 
 				<button type="submit" class="btn btn-primary">Enviar</button>
+
 			</form>
 
-			<h2>Lista de Pessoas</h2>
-			<div>
-				<table class="table table-dark">
-					<thead>
-						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Nome</th>
-							<th scope="col">Email</th>
-							<th scope="col">Data de Nascimento</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="ps : ${pessoas}">
-							<th th:text="${ps.id}" scope="row"></th>
-							<td th:text="${ps.nome}"></td>
-							<td th:text="${ps.email}"></td>
-							<td th:text="${ps.dtNascimento}"></td>
+			<!-- Fragmento da lista de pessoas -->
+			<div th:replace="pessoa/pessoaLista :: lista"></div>
 
-							<td><a th:href="@{/pessoa/editarForm/${ps.id}}">
-									<button type="submit" class="btn btn-primary">Editar</button>
-							</a></td>
-							<td><a th:href="@{/pessoa/deletar/{id}(id=${ps.id})}">
-									<button type="submit" class="btn btn-primary">Deletar</button>
-							</a></td>
-							<td><a th:href="@{/tarefa/${ps.id}}">
-									<button type="submit" class="btn btn-primary">Tarefa</button>
-							</a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
 		</div>
 	</div>
+
+	<!-- Fragmento dos imports do footer -->
 	<footer th:replace="imports/footer"></footer>
+
 </body>
 </html>

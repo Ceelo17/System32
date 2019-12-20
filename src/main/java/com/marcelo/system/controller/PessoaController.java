@@ -48,7 +48,7 @@ public class PessoaController {
 	public String listarForm(PessoaDomain pessoa, BindingResult result, Model model) {
 		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("pessoas", listaPessoas);
-		return "pessoa/PessoaLista";
+		return "pessoa/pessoaLista";
 	}
 
 	// Método que abre o formulário de edição carregando o id
