@@ -2,7 +2,7 @@ package com.marcelo.system.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,7 +26,7 @@ public class PessoaDomain implements Serializable {
 	private String email;
 
 	@Temporal(TemporalType.DATE)
-	private Date dtNascimento;
+	private Calendar dtNascimento;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa", fetch = FetchType.EAGER)
 	private List<TarefaDomain> tarefas = new ArrayList<>();
@@ -35,7 +35,7 @@ public class PessoaDomain implements Serializable {
 		super();
 	}
 
-	public PessoaDomain(Long id, String nome, String email, Date dtNascimento, List<TarefaDomain> tarefas) {
+	public PessoaDomain(Long id, String nome, String email, Calendar dtNascimento, List<TarefaDomain> tarefas) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -68,11 +68,11 @@ public class PessoaDomain implements Serializable {
 		this.email = email;
 	}
 
-	public Date getDtNascimento() {
+	public Calendar getDtNascimento() {
 		return dtNascimento;
 	}
 
-	public void setDtNascimento(Date dtNascimento) {
+	public void setDtNascimento(Calendar dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 
