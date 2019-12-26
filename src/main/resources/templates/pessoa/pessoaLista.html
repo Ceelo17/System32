@@ -22,6 +22,8 @@
 							<th scope="col">Email</th>
 							<th scope="col">Data de Nascimento</th>
 							<th scope="col">Editar</th>
+							<th scope="col">Excluir</th>
+							<th scope="col">Tarefas</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -31,14 +33,20 @@
 							<td th:text="${ps.email}"></td>
 							<td th:text="${ps.dtNascimento}"></td>
 
-							<td><a th:href="@{/pessoa/editarForm/{id}==${ps.id}}">
-									<button type="submit" class="btn bg-info"><i class="fas fa-user-edit"></i></button>
+							<td><a th:href="@{/pessoa/editarForm/{id}(id=${ps.id})}">
+									<button type="submit" class="btn bg-info">
+										<i class="fas fa-user-edit"></i>
+									</button>
 							</a></td>
 							<td><a th:href="@{/pessoa/deletar/{id}(id=${ps.id})}">
-									<button type="submit" class="btn bg-info"><i class="fas fa-user-minus"></i></button>
+									<button type="submit" class="btn bg-info">
+										<i class="fas fa-user-minus"></i>
+									</button>
 							</a></td>
 							<td><a th:href="@{/tarefa/${ps.id}}">
-									<button type="submit" class="btn bg-info"><i class="fas fa-tasks"></i></button>
+									<button type="submit" class="btn bg-info">
+										<i class="fas fa-tasks"></i>
+									</button>
 							</a></td>
 						</tr>
 					</tbody>

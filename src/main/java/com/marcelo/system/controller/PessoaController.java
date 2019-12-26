@@ -36,7 +36,7 @@ public class PessoaController {
 	}
 
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public String cadastrar(PessoaDomain pessoa, Model model) {
+	public String cadastrar(PessoaDomain pessoa, Model model, BindingResult result) {
 		model.addAttribute("nome", pessoa.getNome());
 		model.addAttribute("email", pessoa.getEmail());
 		model.addAttribute("dtNasicmento", pessoa.getDtNascimento());
@@ -55,8 +55,9 @@ public class PessoaController {
 	@RequestMapping(value = "/editarForm/{id}")
 	public String editarForm(@PathVariable("id") Long id, Model model) {
 		PessoaDomain pessoa = service.listarPorId(id);
+
 		model.addAttribute("pessoa", pessoa);
-		return "pessoa/PessoaEdicao";
+		return "pessoa/pessoaEdicao";
 	}
 
 	@RequestMapping(value = "/editar/{id}", method = RequestMethod.POST)
@@ -65,8 +66,11 @@ public class PessoaController {
 			pessoa.setId(id);
 			return "redirect:/pessoa";
 		}
+
 		service.editar(pessoa);
-		model.addAttribute("pessoas", service.listar());
+
+		model.addAttribute("pessoa", pessoa);
+
 		return "redirect:/pessoa";
 	}
 
