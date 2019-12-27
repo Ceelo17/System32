@@ -26,9 +26,11 @@ public class TarefaDomain implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataExpiracao;
 
+	@Column(nullable = true)
 	private boolean concluida;
 
 	// Relacionamentos
+<<<<<<< HEAD
 <<<<<<< HEAD
 	@ManyToOne()
 	@JoinColumn(name = "tarefa_id")
@@ -36,6 +38,9 @@ public class TarefaDomain implements Serializable {
 	PessoaDomain pessoa;
 =======
 	@ManyToOne(optional = false)
+=======
+	@ManyToOne()
+>>>>>>> Cadastro de TarefaDomain vinculado ao PessoaDomain
 	@JoinColumn(name = "pessoa_id")
 	private PessoaDomain pessoa;
 >>>>>>> Erro ao vincular PessoaDomain e TarefaDomain

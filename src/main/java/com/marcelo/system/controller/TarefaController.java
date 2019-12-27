@@ -36,6 +36,7 @@ public class TarefaController {
 	}
 
 	@RequestMapping(value = "/cadastrar/{id}", method = RequestMethod.POST)
+<<<<<<< HEAD
 	public String cadastrar(@PathVariable("id") Long id, TarefaDomain td, Model model) {
 		model.addAttribute("descricao", td.getDescricao());
 		model.addAttribute("titulo", td.getTitulo());
@@ -52,6 +53,15 @@ public class TarefaController {
 		serviceT.inserir(td);
 		return "redirect:/pessoa";
 >>>>>>> Erro ao vincular PessoaDomain e TarefaDomain
+=======
+	public String cadastrar(@PathVariable("id") Long id, TarefaDomain td, PessoaDomain ps, Model model) {
+
+		TarefaDomain td1 = new TarefaDomain(null, td.getDescricao(), td.getTitulo(), td.getDataExpiracao(),
+				td.isConcluida(), td.getPessoa());
+
+		serviceT.inserir(td1);
+		return "redirect:/tarefa/{id}";
+>>>>>>> Cadastro de TarefaDomain vinculado ao PessoaDomain
 	}
 
 	@RequestMapping(value = "/listar")
