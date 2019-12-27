@@ -33,6 +33,7 @@ public class TarefaController {
 		model.addAttribute("titulo", td.getTitulo());
 		model.addAttribute("dataExpiracao", td.getDataExpiracao());
 		model.addAttribute("concluido", td.isConcluida());
+		model.addAttribute("pessoa",td.getPessoa());
 		service.inserir(td);
 		return "redirect:/tarefa";
 	}

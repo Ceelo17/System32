@@ -3,6 +3,7 @@ package com.marcelo.system.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class PessoaDomain implements Serializable {
 	private Long id;
 	private String nome;
 
-	@OneToMany(mappedBy = "pessoa", targetEntity = TarefaDomain.class)
+	@OneToMany(mappedBy = "pessoa", targetEntity = TarefaDomain.class, cascade = CascadeType.PERSIST)
 	private List<TarefaDomain> tarefas;
 
 	public PessoaDomain() {
