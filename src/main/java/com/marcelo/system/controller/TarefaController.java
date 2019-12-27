@@ -32,10 +32,23 @@ public class TarefaController {
 		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("tarefas", listaTarefas);
 		model.addAttribute("pessoas", listaPessoas);
+<<<<<<< HEAD
 		return new ModelAndView("tarefa/tarefaCadastro");
 	}
 
 	@RequestMapping(value = "/cadastrar/{id}", method = RequestMethod.POST)
+=======
+<<<<<<< HEAD
+		return new ModelAndView("TarefaCadastro");
+	}
+
+	@RequestMapping(value = "/cadastrar/{id}", method = RequestMethod.POST)
+=======
+		return new ModelAndView("tarefa/tarefaCadastro");
+	}
+
+	@RequestMapping(value = "/cadastrar/{id}", method = RequestMethod.POST)
+>>>>>>> master
 <<<<<<< HEAD
 	public String cadastrar(@PathVariable("id") Long id, TarefaDomain td, Model model) {
 		model.addAttribute("descricao", td.getDescricao());
@@ -54,6 +67,10 @@ public class TarefaController {
 		return "redirect:/pessoa";
 >>>>>>> Erro ao vincular PessoaDomain e TarefaDomain
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> features
+>>>>>>> master
 	public String cadastrar(@PathVariable("id") Long id, TarefaDomain td, PessoaDomain ps, Model model) {
 
 		TarefaDomain td1 = new TarefaDomain(null, td.getDescricao(), td.getTitulo(), td.getDataExpiracao(),
@@ -61,7 +78,14 @@ public class TarefaController {
 
 		serviceT.inserir(td1);
 		return "redirect:/tarefa/{id}";
+<<<<<<< HEAD
 >>>>>>> Cadastro de TarefaDomain vinculado ao PessoaDomain
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Cadastro de TarefaDomain vinculado ao PessoaDomain
+>>>>>>> features
+>>>>>>> master
 	}
 
 	@RequestMapping(value = "/listar")

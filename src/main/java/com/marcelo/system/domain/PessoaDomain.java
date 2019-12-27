@@ -2,7 +2,14 @@ package com.marcelo.system.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Calendar;
+=======
+<<<<<<< HEAD
+=======
+import java.util.Calendar;
+>>>>>>> features
+>>>>>>> master
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,6 +32,13 @@ public class PessoaDomain implements Serializable {
 	private String nome;
 	private String email;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa", fetch = FetchType.EAGER)
+	private List<TarefaDomain> tarefas = new ArrayList<>();
+=======
+>>>>>>> master
 	@Temporal(TemporalType.DATE)
 	private Calendar dtNascimento;
 
@@ -39,17 +53,37 @@ public class PessoaDomain implements Serializable {
 >>>>>>> Cadastro de TarefaDomain vinculado ao PessoaDomain
 	private List<TarefaDomain> tarefas = new ArrayList<>();
 >>>>>>> Erro ao vincular PessoaDomain e TarefaDomain
+<<<<<<< HEAD
+=======
+>>>>>>> features
+>>>>>>> master
 
 	public PessoaDomain() {
 		super();
 	}
 
+<<<<<<< HEAD
 	public PessoaDomain(Long id, String nome, String email, Calendar dtNascimento, List<TarefaDomain> tarefas) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.dtNascimento = dtNascimento;
+=======
+<<<<<<< HEAD
+	public PessoaDomain(Long id, String nome, List<TarefaDomain> tarefas) {
+		super();
+		this.id = id;
+		this.nome = nome;
+=======
+	public PessoaDomain(Long id, String nome, String email, Calendar dtNascimento, List<TarefaDomain> tarefas) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.dtNascimento = dtNascimento;
+>>>>>>> features
+>>>>>>> master
 		this.tarefas = tarefas;
 	}
 

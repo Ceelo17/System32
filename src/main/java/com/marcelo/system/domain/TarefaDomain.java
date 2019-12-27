@@ -33,6 +33,10 @@ public class TarefaDomain implements Serializable {
 <<<<<<< HEAD
 <<<<<<< HEAD
 	@ManyToOne()
+<<<<<<< HEAD
+	@JoinColumn(name = "pessoa_id")
+	private PessoaDomain pessoa;
+=======
 	@JoinColumn(name = "tarefa_id")
 	@Column(nullable = false)
 	PessoaDomain pessoa;
@@ -44,6 +48,10 @@ public class TarefaDomain implements Serializable {
 	@JoinColumn(name = "pessoa_id")
 	private PessoaDomain pessoa;
 >>>>>>> Erro ao vincular PessoaDomain e TarefaDomain
+<<<<<<< HEAD
+=======
+>>>>>>> features
+>>>>>>> master
 
 	public TarefaDomain() {
 		super();
