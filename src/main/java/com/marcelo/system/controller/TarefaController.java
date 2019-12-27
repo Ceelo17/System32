@@ -32,7 +32,11 @@ public class TarefaController {
 		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("tarefas", listaTarefas);
 		model.addAttribute("pessoas", listaPessoas);
+<<<<<<< HEAD
 		return new ModelAndView("TarefaCadastro");
+=======
+		return new ModelAndView("tarefa/tarefaCadastro");
+>>>>>>> 163f7e667c8b2f38b11dfda29cc7b2f0523ef9f8
 	}
 
 	@RequestMapping(value = "/cadastrar/{id}", method = RequestMethod.POST)

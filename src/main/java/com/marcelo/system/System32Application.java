@@ -7,7 +7,11 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+<<<<<<< HEAD
 @ComponentScan
+=======
+@ComponentScan()
+>>>>>>> 163f7e667c8b2f38b11dfda29cc7b2f0523ef9f8
 public class System32Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
