@@ -17,20 +17,23 @@
 			<div th:replace="layout/header :: header"></div>
 
 
-			<div th:each="ps :: ${pessoas}">
-				<form th:form th:action="@{/tarefa/cadastrar/{id}==${ps.id}}"
-					method="post">
-					Título: <input type="text" name="titulo"
-						placeholder="Digite o título da tarefa" required="required" />
-					Descrição:
-					<textarea name="descricao" rows=-15 cols="30"></textarea>
-					Data Limite: <input type="text" name="dataExpiracao" /> <input
-						type="text" name="pessoa" value="${pessoa.id}" hidden="true" />
-					Concluído: <input type="checkbox" name="concluido" value="true"
-						checked /> <input type="submit" value="Submit">
+			<div th:each="ps : ${pessoas}">
+				<form action="#" th:action="@{/tarefa/cadastrar/{id}(id=${ps.id})}"
+					th:object="${tarefa}" method="post">
+					<input type="text" name="id" th:field="*{ps.id}"
+						placeholder="Seu nome" hidden="hidden" class="form-control" />
+					Titulo: <input type="text" th:field="*{titulo}" name="titulo"
+						placeholder="Digite o titulo da tarefa" required="required" />
+					Descricao:
+					<textarea th:field="*{descricao}" name="descricao" rows=-15
+						cols="30"></textarea>
+					Concluido: <input type="checkbox" name="concluido" value="true"
+						checked /> <input type="submit" th:field="*{concluido}"
+						value="Submit">
 				</form>
 			</div>
 		</div>
 	</div>
+	<footer th:replace="imports/footer"></footer>
 </body>
 </html>
