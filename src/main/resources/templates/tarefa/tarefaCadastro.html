@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="imports/header">
+<title>Cadastro</title>
+</head>
+
+<body>
+
+	<div class="wrapper">
+
+		<!-- Fragmento do sidebar fixo -->
+		<div th:replace="layout/sidebar :: sidebar"></div>
+
+		<div id="content">
+
+			<!-- Fragmento do header fixo -->
+			<div th:replace="layout/header :: header"></div>
+
+
+			<div th:each="ps :: ${pessoas}">
+				<form th:form th:action="@{/tarefa/cadastrar/{id}==${ps.id}}"
+					method="post">
+					Título: <input type="text" name="titulo"
+						placeholder="Digite o título da tarefa" required="required" />
+					Descrição:
+					<textarea name="descricao" rows=-15 cols="30"></textarea>
+					Data Limite: <input type="text" name="dataExpiracao" /> <input
+						type="text" name="pessoa" value="${pessoa.id}" hidden="true" />
+					Concluído: <input type="checkbox" name="concluido" value="true"
+						checked /> <input type="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

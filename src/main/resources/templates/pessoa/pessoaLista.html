@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="imports/header">
+<title>Lista</title>
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<div th:replace="layout/sidebar :: sidebar"></div>
+
+		<div id="content">
+
+			<div th:replace="layout/header :: header"></div>
+			<div th:fragment="lista">
+				<h2>Lista de Pessoas</h2>
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Email</th>
+							<th scope="col">Data de Nascimento</th>
+							<th scope="col">Editar</th>
+							<th scope="col">Excluir</th>
+							<th scope="col">Tarefas</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ps : ${pessoas}">
+							<th th:text="${ps.id}" scope="row"></th>
+							<td th:text="${ps.nome}"></td>
+							<td th:text="${ps.email}"></td>
+							<td th:text="${ps.dtNascimento}"></td>
+
+							<td><a th:href="@{/pessoa/editarForm/{id}(id=${ps.id})}">
+									<button type="submit" class="btn bg-info">
+										<i class="fas fa-user-edit"></i>
+									</button>
+							</a></td>
+							<td><a th:href="@{/pessoa/deletar/{id}(id=${ps.id})}">
+									<button type="submit" class="btn bg-info">
+										<i class="fas fa-user-minus"></i>
+									</button>
+							</a></td>
+							<td><a th:href="@{/tarefa/${ps.id}}">
+									<button type="submit" class="btn bg-info">
+										<i class="fas fa-tasks"></i>
+									</button>
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="imports/footer"></footer>
+</body>
+</html>

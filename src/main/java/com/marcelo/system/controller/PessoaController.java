@@ -32,12 +32,14 @@ public class PessoaController {
 
 		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("pessoas", listaPessoas);
-		return new ModelAndView("PessoaCadastro");
+		return new ModelAndView("pessoa/pessoasCadastro");
 	}
 
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public String cadastrar(PessoaDomain pessoa, Model model) {
+	public String cadastrar(PessoaDomain pessoa, Model model, BindingResult result) {
 		model.addAttribute("nome", pessoa.getNome());
+		model.addAttribute("email", pessoa.getEmail());
+		model.addAttribute("dtNasicmento", pessoa.getDtNascimento());
 		service.inserir(pessoa);
 		return "redirect:/pessoa";
 	}
@@ -46,15 +48,16 @@ public class PessoaController {
 	public String listarForm(PessoaDomain pessoa, BindingResult result, Model model) {
 		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("pessoas", listaPessoas);
-		return "PessoaLista";
+		return "pessoa/pessoaLista";
 	}
 
 	// Método que abre o formulário de edição carregando o id
 	@RequestMapping(value = "/editarForm/{id}")
 	public String editarForm(@PathVariable("id") Long id, Model model) {
 		PessoaDomain pessoa = service.listarPorId(id);
+
 		model.addAttribute("pessoa", pessoa);
-		return "PessoaEdicao";
+		return "pessoa/pessoaEdicao";
 	}
 
 	@RequestMapping(value = "/editar/{id}", method = RequestMethod.POST)
@@ -63,8 +66,11 @@ public class PessoaController {
 			pessoa.setId(id);
 			return "redirect:/pessoa";
 		}
+
 		service.editar(pessoa);
-		model.addAttribute("pessoas", service.listar());
+
+		model.addAttribute("pessoa", pessoa);
+
 		return "redirect:/pessoa";
 	}
 

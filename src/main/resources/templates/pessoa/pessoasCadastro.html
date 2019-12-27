@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="imports/header">
+<title>Cadastro</title>
+</head>
+
+<body>
+
+	<div class="wrapper">
+
+		<!-- Fragmento do sidebar fixo -->
+		<div th:replace="layout/sidebar :: sidebar"></div>
+
+		<div id="content">
+
+			<!-- Fragmento do header fixo -->
+			<div th:replace="layout/header :: header"></div>
+
+			<form th:form th:action="@{pessoa/cadastrar}" method="post">
+
+				<div class="form-row">
+
+					<div class="form-group col-md-6">
+
+						<label th:label> Nome </label> <input type="text" name="nome"
+							placeholder="Seu nome" required="required" class="form-control" />
+					</div>
+
+					<div class="form-group col-md-6">
+						<label th:label>Endereco de email</label>
+
+						<div class="input-group mb-3">
+							<input type="email" class="form-control" placeholder="Seu email"
+								required="required" aria-label="Recipiente para nickname"
+								aria-describedby="basic-addon2" name="email">
+							<div class="input-group-append">
+								<span class="input-group-text" id="basic-addon2">@exemplo.com</span>
+							</div>
+
+						</div>
+						<small th:span id="emailHelp" class="form-text text-muted">Nunca
+							vamos compartilhar seu email, com ninguem.</small>
+					</div>
+
+				</div>
+
+				<button type="submit" class="btn btn-primary">Enviar</button>
+
+			</form>
+
+			<!-- Fragmento da lista de pessoas -->
+			<div th:replace="pessoa/pessoaLista :: lista"></div>
+
+		</div>
+	</div>
+
+	<!-- Fragmento dos imports do footer -->
+	<footer th:replace="imports/footer"></footer>
+
+</body>
+</html>

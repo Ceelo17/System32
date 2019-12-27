@@ -30,9 +30,25 @@ public class TarefaDomain implements Serializable {
 	private boolean concluida;
 
 	// Relacionamentos
+<<<<<<< HEAD
+<<<<<<< HEAD
 	@ManyToOne()
+<<<<<<< HEAD
 	@JoinColumn(name = "pessoa_id")
 	private PessoaDomain pessoa;
+=======
+	@JoinColumn(name = "tarefa_id")
+	@Column(nullable = false)
+	PessoaDomain pessoa;
+=======
+	@ManyToOne(optional = false)
+=======
+	@ManyToOne()
+>>>>>>> Cadastro de TarefaDomain vinculado ao PessoaDomain
+	@JoinColumn(name = "pessoa_id")
+	private PessoaDomain pessoa;
+>>>>>>> Erro ao vincular PessoaDomain e TarefaDomain
+>>>>>>> features
 
 	public TarefaDomain() {
 		super();
