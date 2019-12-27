@@ -32,15 +32,8 @@ public class PessoaController {
 
 		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("pessoas", listaPessoas);
-<<<<<<< HEAD
-		return new ModelAndView("PessoaCadastro");
-	}
 
-	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public String cadastrar(PessoaDomain pessoa, Model model) {
-		model.addAttribute("nome", pessoa.getNome());
-=======
-		return new ModelAndView("pessoa/pessoasCadastro");
+		return new ModelAndView("PessoaCadastro");
 	}
 
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
@@ -48,7 +41,7 @@ public class PessoaController {
 		model.addAttribute("nome", pessoa.getNome());
 		model.addAttribute("email", pessoa.getEmail());
 		model.addAttribute("dtNasicmento", pessoa.getDtNascimento());
->>>>>>> 163f7e667c8b2f38b11dfda29cc7b2f0523ef9f8
+
 		service.inserir(pessoa);
 		return "redirect:/pessoa";
 	}
@@ -57,25 +50,19 @@ public class PessoaController {
 	public String listarForm(PessoaDomain pessoa, BindingResult result, Model model) {
 		List<PessoaDomain> listaPessoas = service.listar();
 		model.addAttribute("pessoas", listaPessoas);
-<<<<<<< HEAD
-		return "PessoaLista";
-=======
+
 		return "pessoa/pessoaLista";
->>>>>>> 163f7e667c8b2f38b11dfda29cc7b2f0523ef9f8
+
 	}
 
 	// Método que abre o formulário de edição carregando o id
 	@RequestMapping(value = "/editarForm/{id}")
 	public String editarForm(@PathVariable("id") Long id, Model model) {
 		PessoaDomain pessoa = service.listarPorId(id);
-<<<<<<< HEAD
-		model.addAttribute("pessoa", pessoa);
-		return "PessoaEdicao";
-=======
 
 		model.addAttribute("pessoa", pessoa);
 		return "pessoa/pessoaEdicao";
->>>>>>> 163f7e667c8b2f38b11dfda29cc7b2f0523ef9f8
+
 	}
 
 	@RequestMapping(value = "/editar/{id}", method = RequestMethod.POST)
@@ -84,16 +71,14 @@ public class PessoaController {
 			pessoa.setId(id);
 			return "redirect:/pessoa";
 		}
-<<<<<<< HEAD
+
 		service.editar(pessoa);
 		model.addAttribute("pessoas", service.listar());
-=======
 
 		service.editar(pessoa);
 
 		model.addAttribute("pessoa", pessoa);
 
->>>>>>> 163f7e667c8b2f38b11dfda29cc7b2f0523ef9f8
 		return "redirect:/pessoa";
 	}
 
