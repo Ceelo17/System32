@@ -1,6 +1,7 @@
 package com.marcelo.system.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,21 +16,27 @@ public class PessoaDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private String nome;
 
+<<<<<<< HEAD
 	@OneToMany(mappedBy = "pessoa", targetEntity = TarefaDomain.class, cascade = CascadeType.PERSIST)
 	private List<TarefaDomain> tarefas;
+=======
+	@OneToMany(mappedBy = "pessoa")
+	private List<TarefaDomain> tarefas = new ArrayList<>();
+>>>>>>> Erro ao vincular PessoaDomain e TarefaDomain
 
 	public PessoaDomain() {
 		super();
 	}
 
-	public PessoaDomain(Long id, String nome) {
+	public PessoaDomain(Long id, String nome, List<TarefaDomain> tarefas) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.tarefas = tarefas;
 	}
 
 	public Long getId() {
